@@ -35,7 +35,7 @@ public class Magento {
         // Fill out account information
         driver.findElement(By.id("firstname")).sendKeys("Ahmed");
         driver.findElement(By.id("lastname")).sendKeys("Sherif");
-        driver.findElement(By.id("email_address")).sendKeys("boboro9267@evnft.com");
+        driver.findElement(By.id("email_address")).sendKeys("fitan77193@gholar.com");
         driver.findElement(By.id("password")).sendKeys("Test@1234");
         driver.findElement(By.id("password-confirmation")).sendKeys("Test@1234");
 
