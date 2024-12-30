@@ -1,21 +1,20 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import java.time.Duration;
-
 
 
 public class Magento {
     WebDriver driver;
+
 
     @BeforeClass
     public void setup() {
@@ -31,11 +30,12 @@ public class Magento {
         driver.get("https://magento.softwaretestingboard.com/");
         // Click "Create an Account"
         driver.findElement(By.linkText("Create an Account")).click();
-
+        String randomEmail = EmailGenerator.generateRandomEmail();
+        System.out.println("Using Email: " + randomEmail);
         // Fill out account information
         driver.findElement(By.id("firstname")).sendKeys("Ahmed");
         driver.findElement(By.id("lastname")).sendKeys("Sherif");
-        driver.findElement(By.id("email_address")).sendKeys("fitan77193@gholar.com");
+        driver.findElement(By.id("email_address")).sendKeys(randomEmail);
         driver.findElement(By.id("password")).sendKeys("Test@1234");
         driver.findElement(By.id("password-confirmation")).sendKeys("Test@1234");
 
@@ -64,6 +64,7 @@ public class Magento {
         assert hotSellersSection.isDisplayed() : "Hot Sellers section is not visible on the page.";
         System.out.println("Successfully navigated to the 'Hot Sellers' section.");
         // Perform mouse hover on the first product
+
         Actions actions = new Actions(driver);
         WebElement firstProductContainer = driver.findElement(By.xpath("(//li[contains(@class, 'product-item')])[1]"));
         actions.moveToElement(firstProductContainer).perform();
